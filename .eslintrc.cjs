@@ -22,5 +22,12 @@ module.exports = {
   rules: {
     "react/react-in-jsx-scope": 0,
     "@typescript-eslint/semi": 0,
+    "react/prop-types": "off",
+    "react/function-component-definition": [
+      error,
+      {
+        namedComponents: "arrow-function",
+      },
+    ],
   },
-};
+}

@@ -1,5 +1,6 @@
-function App() {
-  return <div>Portfolio App Page</div>
+import { Slide } from '@components'
+const App: React.FC = () => {
+  return <Slide title="Slide" />
 }
 
 export default App
