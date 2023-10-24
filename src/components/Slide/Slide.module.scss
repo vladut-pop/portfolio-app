@@ -1,41 +1,28 @@
-@property --gradient-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
+@mixin border {
+  border: 1px solid $light-on-primary;
 }
 
-@keyframes rotation {
-  0% {
-    --gradient-angle: 0deg;
-  }
-  100% {
-    --gradient-angle: 360deg;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+
+.border {
+  padding: 16px;
+  width: fit-content;
+  @include border();
 }
 
 .slide {
-  height: 100%;
-  position: relative;
-  aspect-ratio: 3 / 2;
-  border-radius: 16px;
-  background: $portfolio-tokens-ref-primary-primary30;
+  padding: 64px;
+  width: 280px;
+  @include border();
+  color: $light-on-primary;
+  text-align: center;
+}
 
-  &::before,
-  ::after {
-    content: '';
-    z-index: -1;
-    position: absolute;
-    inset: -4px;
-    background: linear-gradient(
-      var(--gradient-angle),
-      $portfolio-tokens-ref-primary-primary50,
-      $portfolio-tokens-ref-primary-primary70,
-      $portfolio-tokens-ref-primary-primary90
-    );
-    border-radius: inherit;
-    animation: rotation 5s linear infinite;
-  }
-  &::after {
-    filter: blur(3.5rem);
-  }
+.title {
+  @include display-headline-large;
 }

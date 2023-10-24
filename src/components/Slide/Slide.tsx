@@ -1,9 +1,14 @@
 import styles from './Slide.module.scss'
 
-type SlideProps = { title: string }
-
-const Slide: React.FC<SlideProps> = ({ title }) => {
-  return <div className={styles.slide}>{title}</div>
+const Slide: React.FC = () => {
+  return (
+    <div className={styles.container}>
+      <div className={styles.border}>
+        <div className={styles.slide}>
+          <h1 className={styles.title}>Work in progress</h1>
+        </div>
+      </div>
+    </div>
+  )
 }
-
 export default Slide
