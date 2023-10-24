@@ -12,4 +12,5 @@ export default defineConfig({
     },
   },
   plugins: [react(), tsconfigPaths()],
+  base: 'portfolio-app',
 })
