@@ -1,3 +1,4 @@
+import Typography from 'components/Typography'
 import styles from './Slide.module.scss'
 
 const Slide: React.FC = () => {
@@ -6,6 +7,7 @@ const Slide: React.FC = () => {
       <div className={styles.border}>
         <div className={styles.slide}>
           <h1 className={styles.title}>Work in progress</h1>
+          <Typography />
         </div>
       </div>
     </div>
