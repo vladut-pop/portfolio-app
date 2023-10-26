@@ -8,6 +8,7 @@ const Slide: React.FC = () => {
         <div className={styles.slide}>
           <h1 className={styles.title}>Work in progress</h1>
           <Typography />
+          <button onClick={() => console.log('test')}>ts</button>
         </div>
       </div>
     </div>

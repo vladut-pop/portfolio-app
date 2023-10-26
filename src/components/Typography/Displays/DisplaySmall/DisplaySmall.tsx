@@ -1,9 +1,11 @@
 import { DisplaySmallProps } from './types'
 import styles from './DisplaySmall.module.scss'
-import cn from 'classnames'
+import { BaseDisplay } from '../BaseDisplay'
 
-const DisplaySmall: React.FC<DisplaySmallProps> = ({ Tag = 'h1', children, className }) => (
-  <Tag className={cn(styles.DisplaySmall, className)}>{children}</Tag>
+const DisplaySmall: React.FC<DisplaySmallProps> = ({ children, ...props }) => (
+  <BaseDisplay className={styles.DisplaySmall} {...props}>
+    {children}
+  </BaseDisplay>
 )
 
 export default DisplaySmall

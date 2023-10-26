@@ -1,9 +1,11 @@
 import { DisplayLargeProps } from './types'
 import styles from './DisplayLarge.module.scss'
-import cn from 'classnames'
+import { BaseDisplay } from '../BaseDisplay'
 
-const DisplayLarge: React.FC<DisplayLargeProps> = ({ Tag = 'h1', children, className }) => (
-  <Tag className={cn(styles.displayLarge, className)}>{children}</Tag>
+const DisplayLarge: React.FC<DisplayLargeProps> = ({ children, ...props }) => (
+  <BaseDisplay className={styles.displayLarge} {...props}>
+    {children}
+  </BaseDisplay>
 )
 
 export default DisplayLarge
