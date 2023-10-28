@@ -7,6 +7,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        // TODO: Check sass/vite documentation regarding multiple times import.
         additionalData: `@use "./src/assets/sass/index.scss" as *;`,
       },
     },

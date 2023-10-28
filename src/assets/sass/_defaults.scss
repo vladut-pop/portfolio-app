@@ -1,4 +1,4 @@
-@import './variables';
+@use './variables' as *;
 
 html {
   height: 100%;
@@ -19,8 +19,6 @@ body {
 }
 
 // TODO: Check the user agent styles
-html,
-body,
 div,
 p,
 h1,

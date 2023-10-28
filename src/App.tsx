@@ -1,10 +1,9 @@
-import { FragmentA } from 'Fragments'
-import Slide from 'components/Slide/Slide'
+import { FragmentA, FragmentB } from 'Fragments'
 const App: React.FC = () => {
   return (
     <>
-      <Slide />
       <FragmentA />
+      <FragmentB />
     </>
   )
 }
