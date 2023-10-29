@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-// import './assets/sass/_defaults.scss'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // TODO: Remove strict mode, it's also creates re-renders
+  // <React.StrictMode>
+  <App />,
+  // </React.StrictMode>,
 )

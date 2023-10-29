@@ -2,42 +2,43 @@ import { DisplayLarge, DisplaySmall } from 'components/Typography/Displays'
 import styles from './FragmentA.module.scss'
 import cn from 'classnames'
 import gsap from 'gsap'
+import { useLayoutEffect, useRef } from 'react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
-import { getElement, getRandomNumber } from '../../utils/spliteText'
+import { getApplicationSize, getElement, getRandomNumber } from '../../utils/spliteText'
 
 const FragmentA: React.FC = () => {
-  const tl = gsap.timeline()
+  const displayLargeRef = useRef<HTMLHeadingElement>(null)
+  const fragmentARef = useRef<HTMLDivElement>(null)
+  // const tl = gsap.timeline()
 
-  const test = () => {
-    const charElements = getElement('test')
+  useLayoutEffect(() => {
+    const charElements = getElement(displayLargeRef)
     charElements.forEach((char) => {
-      tl.to(
-        char,
-        {
-          scale: getRandomNumber(-3, 3),
-          duration: 4,
-          opacity: 0.2,
-          x: getRandomNumber(-600, 600),
-          y: getRandomNumber(-600, 600),
-          rotate: getRandomNumber(-360, 360),
-          userSelect: 'none',
+      gsap.to(char, {
+        scrollTrigger: {
+          trigger: displayLargeRef.current,
+          // markers: true,
+          start: '0px 40%',
+          end: '+=400 top',
+          toggleActions: 'play play reverse reverse',
         },
-        '<',
-      )
-      // tl.reverse()
+        scale: getRandomNumber(0.5, 3),
+        duration: 4,
+        opacity: 0.2,
+        x: getRandomNumber(-getApplicationSize().width / 2, getApplicationSize().width / 2),
+        y: getRandomNumber(-getApplicationSize().height / 3, getApplicationSize().height),
+        rotate: getRandomNumber(-360, 360),
+        userSelect: 'none',
+      })
     })
-  }
-
-  const reverse = () => {
-    tl.reverse()
-  }
+  }, [])
 
   return (
-    <div className={cn(styles.content)}>
+    <div className={cn(styles.content)} ref={fragmentARef}>
       <DisplaySmall>by</DisplaySmall>
-      <DisplayLarge id="test">Vladut POP</DisplayLarge>
-      <button onClick={() => test()}>animation</button>
-      <button onClick={() => reverse()}>reverse</button>
+      <DisplayLarge ref={displayLargeRef}>Vladut POP</DisplayLarge>
     </div>
   )
 }

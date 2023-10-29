@@ -1,8 +1,9 @@
-export const getElement = (id: string): Array<HTMLDivElement> => {
-  // TODO: check later if useRef is a better approach
+import { RefObject } from 'react'
+
+export const getElement = ({ current }: RefObject<HTMLElement>): Array<HTMLDivElement> => {
   const charElements = []
-  const elementWords = document.getElementById(id)!.innerHTML.split(' ')
-  document.getElementById(id)!.innerHTML = ''
+  const elementWords = current!.innerHTML.split(' ')
+  current!.innerHTML = ''
   for (let i = 0; i < elementWords.length; i++) {
     const word = elementWords[i]
 
@@ -14,13 +15,13 @@ export const getElement = (id: string): Array<HTMLDivElement> => {
       const charElement = document.createElement('div')
       charElement.style.position = 'relative'
       charElement.style.display = 'inline-block'
-      charElement.classList.add('animation-header')
+      // charElement.classList.add('animation')
       charElement.innerHTML = word.charAt(i)
       charElements.push(charElement)
       wordElement.appendChild(charElement)
     }
 
-    document.getElementById(id)!.appendChild(wordElement)
+    current!.appendChild(wordElement)
 
     if (i < elementWords.length - 1) {
       const spaceElement = document.createElement('div')
@@ -28,7 +29,7 @@ export const getElement = (id: string): Array<HTMLDivElement> => {
       spaceElement.style.display = 'inline-block'
       spaceElement.innerHTML = '&nbsp;'
 
-      document.getElementById(id)!.appendChild(spaceElement)
+      current!.appendChild(spaceElement)
     }
   }
   return charElements
@@ -36,4 +37,11 @@ export const getElement = (id: string): Array<HTMLDivElement> => {
 
 export const getRandomNumber = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+export const getApplicationSize = (): { width: number; height: number } => {
+  return {
+    width: window.innerWidth,
+    height: document.body.scrollHeight,
+  }
 }

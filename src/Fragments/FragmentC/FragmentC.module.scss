@@ -1,0 +1,13 @@
+.content {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  width: 300vw;
+  background-color: $dark-surface-bright;
+  color: $dark-on-surface-variant;
+}
+
+section {
+  height: 100vh;
+  width: 100vw;
+}

@@ -2,11 +2,11 @@
   border: 1px solid $light-on-primary;
 }
 
-.container {
+.content {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: inherit;
+  height: 100vh;
 }
 
 .border {
