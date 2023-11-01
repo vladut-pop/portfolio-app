@@ -24,6 +24,7 @@ const FragmentA: React.FC = () => {
           end: '+=400 top',
           toggleActions: 'play play reverse reverse',
         },
+        zIndex: 1,
         scale: getRandomNumber(0.5, 3),
         duration: 4,
         opacity: 0.2,

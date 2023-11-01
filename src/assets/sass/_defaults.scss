@@ -1,21 +1,21 @@
 @use './variables' as *;
 
 html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: initial;
+}
+
+html,
+body {
+  min-height: 100%;
+  height: auto;
 }
 
 body {
-  height: inherit;
-  background-color: $light-primary;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  padding: 0;
+  background-color: $light-primary;
+  // font-family TODO: Include font family
 }
 
 // TODO: Check the user agent styles
@@ -37,4 +37,9 @@ li {
 
 * {
   box-sizing: border-box;
+}
+
+.lenis {
+  height: 100vh;
+  overflow-y: auto;
 }
