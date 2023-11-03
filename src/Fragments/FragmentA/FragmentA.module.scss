@@ -6,3 +6,15 @@
   align-items: center;
   color: $light-on-primary;
 }
+
+.title {
+  background-image: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2hpOWN0cW5nYzBiMnlva2RsaHFoZ3kzaWMxdnBwazRjajJ3ZHVjYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0oYBxMzAFU3iHhsPk6/giphy-downsized-large.gif);
+  background-size: cover;
+  transform: rotate(-15deg);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: pre-line;
+  line-height: 120px;
+}

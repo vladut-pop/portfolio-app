@@ -1,13 +1,23 @@
 .content {
   display: flex;
-  position: relative;
   height: 100vh;
   width: 300vw;
-  background-color: $dark-surface-bright;
-  color: $dark-on-surface-variant;
+  background-color: $dark-surface;
+  color: $dark-on-surface;
 }
 
 section {
   height: 100vh;
   width: 100vw;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: linear-gradient($dark-surface-container-lowest, $dark-surface-container-highest);
+  max-width: 80%;
+  padding: 56px;
+  border-radius: 8px;
 }

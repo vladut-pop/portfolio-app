@@ -14,7 +14,8 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $light-primary;
+  background-color: $dark-background;
+  overflow-x: hidden;
   // font-family TODO: Include font family
 }
 
@@ -39,6 +40,7 @@ li {
   box-sizing: border-box;
 }
 
+//TODO: is this really needed ?
 .lenis {
   height: 100vh;
   overflow-y: auto;
