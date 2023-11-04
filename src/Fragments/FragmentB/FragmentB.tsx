@@ -1,4 +1,4 @@
-import Typography from 'components/Typography'
+import Typography from 'components/Typography/Typography'
 import styles from './FragmentB.module.scss'
 import { useRef } from 'react'
 

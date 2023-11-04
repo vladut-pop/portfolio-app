@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { useLayoutEffect, useRef } from 'react'
 
 import { getApplicationSize, getElement, getRandomNumber } from '../../utils/spliteText'
+import { LabelMedium } from 'components/Typography'
 
 const FragmentA: React.FC = () => {
   const displayLargeRef = useRef<HTMLHeadingElement>(null)
@@ -42,6 +43,10 @@ const FragmentA: React.FC = () => {
         Vladut POP'<DisplayMedium Tag="span">s{'\n'}</DisplayMedium> playground{'\n'}
         <DisplayMedium Tag="span"> and{'\n'}</DisplayMedium> portfolio
       </DisplayLarge>
+
+      <LabelMedium Tag="p" className={styles.scroll}>
+        Scroll
+      </LabelMedium>
     </div>
   )
 }

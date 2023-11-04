@@ -1,4 +1,5 @@
 .content {
+  position: relative;
   height: 100vh;
   background-color: $light-on-tertiary-fixed-variant;
   display: flex;
@@ -17,4 +18,9 @@
   -webkit-text-fill-color: transparent;
   white-space: pre-line;
   line-height: 120px;
+}
+
+.scroll {
+  position: absolute;
+  bottom: 64px;
 }
