@@ -5,37 +5,40 @@ import gsap from 'gsap'
 import { useLayoutEffect, useRef } from 'react'
 
 import { getApplicationSize, getElement, getRandomNumber } from '../../utils/spliteText'
-import { LabelMedium } from 'components/Typography'
+import { LabelSmall } from 'components/Typography'
+import { Icon } from '@components'
 
 const FragmentA: React.FC = () => {
   const displayLargeRef = useRef<HTMLHeadingElement>(null)
+  const scrollLabel = useRef<HTMLParagraphElement>(null)
   const fragmentARef = useRef<HTMLDivElement>(null) //TODO: it can be use to trigger the animation
 
   // const tl = gsap.timeline()
 
-  // useLayoutEffect(() => {
-  //   const charElements = getElement(displayLargeRef)
-  //   charElements.forEach((char) => {
-  //     gsap.to(char, {
-  //       scrollTrigger: {
-  //         trigger: displayLargeRef.current,
-  //         // markers: true,
-  //         start: '0px 40%',
-  //         end: '+=400 top',
-  //         toggleActions: 'play play reverse reverse',
-  //       },
-  //       zIndex: 1,
-  //       scale: getRandomNumber(0.5, 3),
-  //       duration: 4,
-  //       opacity: 0.2,
-  //       x: getRandomNumber(-getApplicationSize().width / 2, getApplicationSize().width / 2),
-  //       y: getRandomNumber(-getApplicationSize().height / 3, getApplicationSize().height),
-  //       rotate: getRandomNumber(-360, 360),
-  //       userSelect: 'none',
-  //       ease: 'power3.inOut',
-  //     })
-  //   })
-  // }, [])
+  useLayoutEffect(() => {
+    gsap.to(scrollLabel.current, { scale: 1.1, repeat: 5, duration: 2, ease: 'fade.in' })
+    //   const charElements = getElement(displayLargeRef)
+    //   charElements.forEach((char) => {
+    //     gsap.to(char, {
+    //       scrollTrigger: {
+    //         trigger: displayLargeRef.current,
+    //         // markers: true,
+    //         start: '0px 40%',
+    //         end: '+=400 top',
+    //         toggleActions: 'play play reverse reverse',
+    //       },
+    //       zIndex: 1,
+    //       scale: getRandomNumber(0.5, 3),
+    //       duration: 4,
+    //       opacity: 0.2,
+    //       x: getRandomNumber(-getApplicationSize().width / 2, getApplicationSize().width / 2),
+    //       y: getRandomNumber(-getApplicationSize().height / 3, getApplicationSize().height),
+    //       rotate: getRandomNumber(-360, 360),
+    //       userSelect: 'none',
+    //       ease: 'power3.inOut',
+    //     })
+    //   })
+  }, [])
 
   return (
     <div className={cn(styles.content)} ref={fragmentARef}>
@@ -44,9 +47,10 @@ const FragmentA: React.FC = () => {
         <DisplayMedium Tag="span"> and{'\n'}</DisplayMedium> portfolio
       </DisplayLarge>
 
-      <LabelMedium Tag="p" className={styles.scroll}>
+      <LabelSmall Tag="p" className={styles.scroll} ref={scrollLabel}>
         Scroll
-      </LabelMedium>
+        <Icon size="small">mouse</Icon>
+      </LabelSmall>
     </div>
   )
 }

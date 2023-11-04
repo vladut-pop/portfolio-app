@@ -1,6 +1,7 @@
 import styles from './FragmentC.module.scss'
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { BodyMedium } from 'components/Typography'
 
 const FragmentC: React.FC = () => {
   const FragmentCRef = useRef<HTMLDivElement>(null)
@@ -23,7 +24,7 @@ const FragmentC: React.FC = () => {
   return (
     <div className={styles.content} ref={FragmentCRef}>
       <section>
-        <div className={styles.container}>
+        <BodyMedium className={styles.container}>
           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece
           of classical Latin literature from 45 BC, making it over 2000 years old. Richard
           McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the
@@ -33,10 +34,10 @@ const FragmentC: React.FC = () => {
           of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of
           ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum
           dolor sit amet..", comes from a line in section 1.10.32.
-        </div>
+        </BodyMedium>
       </section>
       <section>
-        <div className={styles.container}>
+        <BodyMedium className={styles.container}>
           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece
           of classical Latin literature from 45 BC, making it over 2000 years old. Richard
           McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the
@@ -46,10 +47,10 @@ const FragmentC: React.FC = () => {
           of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of
           ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum
           dolor sit amet..", comes from a line in section 1.10.32.
-        </div>
-      </section>{' '}
+        </BodyMedium>
+      </section>
       <section>
-        <div className={styles.container}>
+        <BodyMedium className={styles.container}>
           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece
           of classical Latin literature from 45 BC, making it over 2000 years old. Richard
           McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the
@@ -59,7 +60,7 @@ const FragmentC: React.FC = () => {
           of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of
           ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum
           dolor sit amet..", comes from a line in section 1.10.32.
-        </div>
+        </BodyMedium>
       </section>
     </div>
   )
