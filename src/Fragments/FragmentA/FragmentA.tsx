@@ -10,13 +10,19 @@ import { Icon } from '@components'
 
 const FragmentA: React.FC = () => {
   const displayLargeRef = useRef<HTMLHeadingElement>(null)
-  const scrollLabel = useRef<HTMLParagraphElement>(null)
+  const scrollLabelRef = useRef<HTMLParagraphElement>(null)
+  const mouseRef = useRef<HTMLSpanElement>(null)
   const fragmentARef = useRef<HTMLDivElement>(null) //TODO: it can be use to trigger the animation
 
   // const tl = gsap.timeline()
 
   useLayoutEffect(() => {
-    gsap.to(scrollLabel.current, { scale: 1.1, repeat: 5, duration: 2, ease: 'fade.in' })
+    gsap.fromTo(
+      scrollLabelRef.current,
+      { opacity: 0.5 },
+      { opacity: 1, repeat: -1, duration: 2, ease: 'fade.in' },
+    )
+    gsap.fromTo(mouseRef.current, { y: -4 }, { y: 4, duration: 2, repeat: -1 })
     //   const charElements = getElement(displayLargeRef)
     //   charElements.forEach((char) => {
     //     gsap.to(char, {
@@ -47,9 +53,12 @@ const FragmentA: React.FC = () => {
         <DisplayMedium Tag="span"> and{'\n'}</DisplayMedium> portfolio
       </DisplayLarge>
 
-      <LabelSmall Tag="p" className={styles.scroll} ref={scrollLabel}>
+      <LabelSmall Tag="p" className={styles.scroll} ref={scrollLabelRef}>
         Scroll
-        <Icon size="small">mouse</Icon>
+        <Icon size="small" className={styles.scroll_icon} ref={mouseRef}>
+          mouse
+        </Icon>
+        down
       </LabelSmall>
     </div>
   )

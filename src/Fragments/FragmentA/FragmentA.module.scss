@@ -22,5 +22,10 @@
 
 .scroll {
   position: absolute;
+  display: flex;
   bottom: 64px;
+
+  &_icon {
+    padding: 0 2px;
+  }
 }
