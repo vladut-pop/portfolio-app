@@ -7,6 +7,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { getApplicationSize, getElement, getRandomNumber } from '../../utils/spliteText'
 import { LabelSmall } from 'components/Typography'
 import { Icon } from '@components'
+import { createGlitchEffect } from './animation'
 
 const FragmentA: React.FC = () => {
   const displayLargeRef = useRef<HTMLHeadingElement>(null)
@@ -17,12 +18,18 @@ const FragmentA: React.FC = () => {
   // const tl = gsap.timeline()
 
   useLayoutEffect(() => {
-    gsap.fromTo(
-      scrollLabelRef.current,
-      { opacity: 0.5 },
-      { opacity: 1, repeat: -1, duration: 2, ease: 'fade.in' },
-    )
+
+    // gsap.fromTo(
+    //   scrollLabelRef.current,
+    //   { opacity: 0.5 },
+    //   { opacity: 1, repeat: -1, duration: 2, ease: 'fade.in' },
+    // )
+
+    // Animate the mouse icon
     gsap.fromTo(mouseRef.current, { y: -4 }, { y: 4, duration: 2, repeat: -1 })
+
+    createGlitchEffect(scrollLabelRef.current)
+
     //   const charElements = getElement(displayLargeRef)
     //   charElements.forEach((char) => {
     //     gsap.to(char, {
