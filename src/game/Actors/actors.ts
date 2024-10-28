@@ -1,6 +1,10 @@
-import { hoodie } from './Hoodie/Hoodie'
+import { Block } from './Block'
+import { Hoodie } from './Hoodie'
 
 export const actors = [
-  hoodie(),
+  ...Array(16)
+    .fill('')
+    .map((_, i) => Block(64 * i, 64 * 8)),
+  Hoodie(),
   // Instantiate other actors
 ]

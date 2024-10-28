@@ -7,6 +7,8 @@ const GameCanvas = () => {
   const canvasRef = useRef(null)
   const keys = useKeyInput()
   const keysRef = useRef(keys)
+  const CANVAS_HEIGHT = 64 * 9 // 9 tiles high
+  const CANVAS_WIDTH = 64 * 16 // 16 tiles wide
 
   useEffect(() => {
     keysRef.current = keys
@@ -27,7 +29,7 @@ const GameCanvas = () => {
     gameLoop(update, render)
   }, [])
 
-  return <canvas ref={canvasRef} width={800} height={600} />
+  return <canvas ref={canvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} />
 }
 
 export default GameCanvas
