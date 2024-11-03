@@ -15,9 +15,9 @@ const GameCanvas = () => {
   }, [keys])
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = initializeCanvas(canvas!)
-    const update = (deltaTime) => {
+    const canvas = canvasRef.current! as HTMLCanvasElement
+    const ctx = initializeCanvas(canvas) as CanvasRenderingContext2D
+    const update = (deltaTime: number) => {
       // Update actors based on keys and deltaTime
       actors.forEach((actor) => actor.update(deltaTime, keysRef.current))
     }
