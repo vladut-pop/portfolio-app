@@ -1,0 +1,17 @@
+.basics {
+  display: flex;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.basics__contact {
+  display: flex;
+  gap: var(--spacing-s);
+}
+
+.basics__picture {
+  --profile-picture-size: 128px;
+  --profile-picture-border-radius: 100%;
+  border-radius: var(--profile-picture-border-radius);
+  height: var(--profile-picture-size);
+}
