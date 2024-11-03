@@ -4,13 +4,11 @@ import { CVPage, HomePage } from './pages'
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/game" element={<GameCanvas />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/cv" element={<CVPage />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/game" element={<GameCanvas />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/cv" element={<CVPage />} />
+    </Routes>
   )
 }
 
