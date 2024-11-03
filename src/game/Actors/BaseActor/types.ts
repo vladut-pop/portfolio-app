@@ -4,7 +4,7 @@ export type Action = { row: number; frames: number }
 
 export type BaseActorProps = {
   // src: string
-  // spirteActions: {}
+  spriteActions: { [key: string]: Action }
   position: { x: number; y: number }
   type: 'PLAYER' | 'BLOCK'
   speed: number
@@ -14,7 +14,7 @@ export type BaseActorProps = {
   currentFrame: number
   frameTimer: number
   frameInterval: number
-  currentAction: string
+  currentAction: keyof BaseActorProps['spriteActions']
   gravity: Gravity
   update: (deltaTime: number, key: { [key: string]: boolean }) => void
   draw: (ctx: CanvasRenderingContext2D) => void

@@ -7,12 +7,6 @@ import { PlayerActor } from './types'
 const redHoodImage = new Image()
 redHoodImage.src = red_hood
 
-const spriteActions = {
-  idle: { row: 0, frames: 1 },
-  walk: { row: 1, frames: 12 },
-  jump: { row: 3, frames: 12 },
-}
-
 export const Hoodie = (position = { x: 50, y: 50 }, speed = 50): PlayerActor => {
   return {
     position,
@@ -20,6 +14,11 @@ export const Hoodie = (position = { x: 50, y: 50 }, speed = 50): PlayerActor => 
     speed,
     // sHeight: 1463 / 11, // Dimensions of the sprite sheet divided by the number of frames
     // sWidth: 1344 / 12,
+    spriteActions: {
+      idle: { row: 0, frames: 1 },
+      walk: { row: 1, frames: 12 },
+      jump: { row: 3, frames: 12 },
+    },
     sHeight: 64,
     sWidth: 64,
     scale: 2,
@@ -31,7 +30,7 @@ export const Hoodie = (position = { x: 50, y: 50 }, speed = 50): PlayerActor => 
     update(deltaTime, keys) {
       this.frameTimer += deltaTime
       if (this.frameTimer >= this.frameInterval) {
-        this.currentFrame = (this.currentFrame + 1) % spriteActions[this.currentAction].frames
+        this.currentFrame = (this.currentFrame + 1) % this.spriteActions[this.currentAction].frames
         this.frameTimer = 0
       }
 
@@ -41,7 +40,7 @@ export const Hoodie = (position = { x: 50, y: 50 }, speed = 50): PlayerActor => 
       if (keys['ArrowUp'] || keys['W'] || keys[' ']) {
         newY -= this.speed * deltaTime + 20
         this.currentAction = 'jump'
-      } else if (keys['ArrowDown' || keys['S']]) {
+      } else if (keys['ArrowDown'] || keys['S']) {
         newY += this.speed * deltaTime
         this.currentAction = 'walk'
       } else if (keys['ArrowLeft'] || keys['A']) {
