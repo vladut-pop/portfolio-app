@@ -5,7 +5,7 @@ import { HashRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <BrowserRouter basename="portfolio-app">
-  <HashRouter basename="portfolio-app">
+  <HashRouter>
     <App />
   </HashRouter>,
   // </BrowserRouter>,
