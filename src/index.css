@@ -5,7 +5,7 @@
   --spacing-l: 24px;
   --spacing-xl: 32px;
 
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Manrope, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -35,9 +35,8 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+ul {
+  list-style: none;
 }
 
 button {

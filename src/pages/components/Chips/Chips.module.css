@@ -1,0 +1,13 @@
+.chip {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.chip__img {
+}
+.chip__description {
+}
+.chip__heading {
+}
+.chip__subheading {
+}

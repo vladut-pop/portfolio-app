@@ -1,0 +1,16 @@
+.chip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-m);
+  padding: var(--spacing-s);
+  border: 1px solid grey;
+}
+
+.chip__img {
+}
+.chip__description {
+}
+.chip__heading {
+}
+.chip__subheading {
+}
