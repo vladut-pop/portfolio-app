@@ -1,0 +1,14 @@
+.primary {
+  border-radius: var(--spacing-s);
+  border: 1px solid transparent;
+  padding: var(--spacing-s);
+}
+
+.primary:hover {
+  border-color: #646cff;
+}
+
+.primary:focus,
+.primary:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

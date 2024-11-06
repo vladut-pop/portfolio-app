@@ -19,13 +19,14 @@
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr min(1200px, 100%) 1fr; /* Center the content */
-  padding: 0 20px; /* Add padding to the left and right */
+  padding: 0 calc(2 * var(--spacing-xl)); /* Add padding to the left and right */
 }
 
-.container > * {
-  grid-column: 2; /* Ensure the content is in the center column */
+.edit__button {
+  position: fixed;
+  bottom: var(--spacing-xl);
+  right: var(--spacing-xl);
+  z-index: 1000;
 }
 
 a {
@@ -55,25 +56,6 @@ h5,
 h6,
 p {
   margin: 0;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
