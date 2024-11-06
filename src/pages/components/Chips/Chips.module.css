@@ -1,13 +1,5 @@
-.chip {
+.chips {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-xs);
-}
-
-.chip__img {
-}
-.chip__description {
-}
-.chip__heading {
-}
-.chip__subheading {
 }

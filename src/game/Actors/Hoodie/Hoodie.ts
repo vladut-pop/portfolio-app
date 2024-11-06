@@ -7,7 +7,7 @@ import { PlayerActor } from './types'
 const redHoodImage = new Image()
 redHoodImage.src = red_hood
 
-export const Hoodie = (position = { x: 50, y: 50 }, speed = 50): PlayerActor => {
+export const Hoodie = (position = { x: 50, y: 50 }, speed = 250): PlayerActor => {
   return {
     position,
     type: 'PLAYER',
@@ -26,7 +26,7 @@ export const Hoodie = (position = { x: 50, y: 50 }, speed = 50): PlayerActor => 
     frameTimer: 0,
     frameInterval: 0.1,
     currentAction: 'idle', // Add a property to track the current action
-    gravity: { gravity: 0.1, gravitySpeed: 0 },
+    gravity: { gravity: 0.5, gravitySpeed: 0 },
     update(deltaTime, keys) {
       this.frameTimer += deltaTime
       if (this.frameTimer >= this.frameInterval) {
@@ -36,17 +36,17 @@ export const Hoodie = (position = { x: 50, y: 50 }, speed = 50): PlayerActor => 
 
       let newX = this.position.x
       let newY = this.position.y
-
-      if (keys['ArrowUp'] || keys['W'] || keys[' ']) {
-        newY -= this.speed * deltaTime + 20
+      console.log()
+      if (keys['ArrowUp'] || keys['W'] || keys[' '] || keys['w']) {
+        newY -= this.speed * deltaTime + 10
         this.currentAction = 'jump'
-      } else if (keys['ArrowDown'] || keys['S']) {
+      } else if (keys['ArrowDown'] || keys['S'] || keys['s']) {
         newY += this.speed * deltaTime
         this.currentAction = 'walk'
-      } else if (keys['ArrowLeft'] || keys['A']) {
+      } else if (keys['ArrowLeft'] || keys['A'] || keys['a']) {
         newX -= this.speed * deltaTime
         this.currentAction = 'walk'
-      } else if (keys['ArrowRight'] || keys['D']) {
+      } else if (keys['ArrowRight'] || keys['D'] || keys['d']) {
         newX += this.speed * deltaTime
         this.currentAction = 'walk'
       } else {

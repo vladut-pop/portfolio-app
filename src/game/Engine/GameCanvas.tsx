@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { useKeyInput } from './hooks/useKeyInput'
-import { gameLoop, initializeCanvas } from './utils'
+import { canvasGrid, gameLoop, initializeCanvas } from './utils'
 import { actors } from '../Actors/actors'
 
 const GameCanvas = () => {
@@ -24,6 +24,11 @@ const GameCanvas = () => {
     const render = () => {
       // Clear and redraw the canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      // Draw the grid
+      canvasGrid(ctx)
+
+      // Draw actors
       actors.forEach((actor) => actor.draw(ctx))
     }
     gameLoop(update, render)

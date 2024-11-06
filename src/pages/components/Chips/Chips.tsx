@@ -4,13 +4,11 @@ import { ChipsProps } from './types'
 
 const Chips: React.FC<ChipsProps> = ({ chips }) => {
   return (
-    <ul>
-      {chips.map(({ icon, heading, subheading }, index) => (
-        <li key={index} className={styles.chips}>
-          <Chip icon={icon} heading={heading} subheading={subheading} />
-        </li>
+    <div className={styles.chips}>
+      {chips.map(({ icon, heading, subheading }) => (
+        <Chip icon={icon} heading={heading} subheading={subheading} />
       ))}
-    </ul>
+    </div>
   )
 }
 

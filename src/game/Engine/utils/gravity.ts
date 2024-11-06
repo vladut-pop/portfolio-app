@@ -4,7 +4,7 @@ import { isColliding } from './collisionDetection'
 
 export type Gravity = { gravity: number; gravitySpeed: number }
 
-const MAXIMUM_GRAVITY_SPEED = 32
+const MAXIMUM_GRAVITY_SPEED = 64
 
 export const addGravity = (actor: PlayerActor) => {
   actor.gravity.gravitySpeed += actor.gravity.gravity
