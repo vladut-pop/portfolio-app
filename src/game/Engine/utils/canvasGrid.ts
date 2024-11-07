@@ -20,4 +20,6 @@ export const canvasGrid = (ctx: CanvasRenderingContext2D): void => {
     ctx.lineTo(width, y)
     ctx.stroke()
   }
+
+  ctx.setLineDash([])
 }

@@ -4,16 +4,20 @@ import { useDrag } from './hooks/useDrag'
 import { canvasGrid, gameLoop } from './utils'
 import { actors } from '../Actors/actors'
 import { useAtom } from 'jotai'
-import { canvasHeightBlocksAtom, canvasWidthBlocksAtom, hasGridAtom } from '../../atoms'
+import { canvasHeightBlocksAtom, canvasWidthBlocksAtom, hasGridAtom, isEditAtom } from '../../atoms'
 
 const GameCanvas = () => {
+  console.log('GameCanvas component')
+
   const canvasRef = useRef(null)
   const keys = useKeyInput()
   const keysRef = useRef(keys)
   const [canvasHeightBlocks] = useAtom(canvasHeightBlocksAtom)
   const [canvasWidthBlocks] = useAtom(canvasWidthBlocksAtom)
+  const [isEdit] = useAtom(isEditAtom)
   const [hasGrid] = useAtom(hasGridAtom)
   const hasGridRef = useRef(hasGrid)
+  const isEditRef = useRef(isEdit)
   const { isDragging, position } = useDrag(canvasRef)
   const BLOCK_SIZE = 64
   const CANVAS_HEIGHT = canvasHeightBlocks * BLOCK_SIZE // 9 tiles high
@@ -27,10 +31,16 @@ const GameCanvas = () => {
     hasGridRef.current = hasGrid
   }, [hasGrid])
 
-  console.log('GameCanvas', isDragging, position)
+  useEffect(() => {
+    isEditRef.current = isEdit
+  }, [isEdit])
+
+  console.log(isDragging, position)
 
   // TODO: get a better understanding of ref and gameLoop
   useEffect(() => {
+    console.log('GameCanvas useEffect')
+
     const canvas = canvasRef.current! as HTMLCanvasElement
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
     const update = (deltaTime: number) => {
@@ -46,6 +56,16 @@ const GameCanvas = () => {
 
       // Draw actors
       actors.forEach((actor) => actor.draw(ctx))
+
+      // Draw border around actors
+      isEditRef.current &&
+        actors.forEach((actor) => {
+          ctx.strokeStyle = 'gray'
+          ctx.lineWidth = 1
+          ctx.setLineDash([5, 3])
+          ctx.strokeRect(actor.position.x, actor.position.y, actor.sWidth, actor.sHeight)
+          ctx.setLineDash([])
+        })
     }
     gameLoop(update, render)
   }, [])

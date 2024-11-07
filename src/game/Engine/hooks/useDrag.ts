@@ -42,7 +42,5 @@ export const useDrag = (canvasRef: React.RefObject<HTMLCanvasElement>) => {
     }
   }, [isDragging])
 
-  console.log('useDrag', isDragging, position)
-
   return { isDragging, position }
 }
