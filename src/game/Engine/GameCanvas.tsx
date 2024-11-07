@@ -12,6 +12,7 @@ const GameCanvas = () => {
   const [canvasHeightBlocks] = useAtom(canvasHeightBlocksAtom)
   const [canvasWidthBlocks] = useAtom(canvasWidthBlocksAtom)
   const [hasGrid] = useAtom(hasGridAtom)
+  const hasGridRef = useRef(hasGrid)
   const BLOCK_SIZE = 64
   const CANVAS_HEIGHT = canvasHeightBlocks * BLOCK_SIZE // 9 tiles high
   const CANVAS_WIDTH = canvasWidthBlocks * BLOCK_SIZE // 16 tiles wide
@@ -20,6 +21,11 @@ const GameCanvas = () => {
     keysRef.current = keys
   }, [keys])
 
+  useEffect(() => {
+    hasGridRef.current = hasGrid
+  }, [hasGrid])
+
+  // TODO: get a better understanding of ref and gameLoop
   useEffect(() => {
     const canvas = canvasRef.current! as HTMLCanvasElement
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
@@ -32,8 +38,7 @@ const GameCanvas = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       // Draw the grid
-      console.log('hasGrid', hasGrid)
-      hasGrid && canvasGrid(ctx)
+      hasGridRef.current && canvasGrid(ctx)
 
       // Draw actors
       actors.forEach((actor) => actor.draw(ctx))
