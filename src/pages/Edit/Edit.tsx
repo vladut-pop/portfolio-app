@@ -1,12 +1,14 @@
 import { Input } from '../components/Input'
 import styles from './Edit.module.css'
 import { useAtom } from 'jotai'
-import { canvasHeightBlocksAtom, canvasWidthBlocksAtom } from '../../atoms'
+import { canvasHeightBlocksAtom, canvasWidthBlocksAtom, hasGridAtom } from '../../atoms'
+import { CheckBox } from '../components/CheckBox'
 // import { At, GithubLogo } from '@phosphor-icons/react'
 
 const Edit: React.FC = () => {
   const [canvasHeightBlocks, setCanvasHeightBlocks] = useAtom(canvasHeightBlocksAtom)
   const [canvasWidthBlocks, setCanvasWidthBlocks] = useAtom(canvasWidthBlocksAtom)
+  const [hasGrid, setHasGrid] = useAtom(hasGridAtom)
 
   const handleHeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCanvasHeightBlocks(Number(e.target.value))
@@ -14,6 +16,9 @@ const Edit: React.FC = () => {
 
   const handleWidthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCanvasWidthBlocks(Number(e.target.value))
+  }
+  const handleGridChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHasGrid(Boolean(e.target.checked))
   }
 
   return (
@@ -32,6 +37,7 @@ const Edit: React.FC = () => {
         value={canvasWidthBlocks}
         onChange={handleWidthChange}
       />
+      <CheckBox id="grid" label="Grid" onChange={handleGridChange} checked={hasGrid} />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-export type InputProps = {
+export type CheckBoxProps = {
   id: string
   label: string
 } & React.HTMLProps<HTMLInputElement>

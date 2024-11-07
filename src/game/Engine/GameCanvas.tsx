@@ -3,7 +3,7 @@ import { useKeyInput } from './hooks/useKeyInput'
 import { canvasGrid, gameLoop } from './utils'
 import { actors } from '../Actors/actors'
 import { useAtom } from 'jotai'
-import { canvasHeightBlocksAtom, canvasWidthBlocksAtom } from '../../atoms'
+import { canvasHeightBlocksAtom, canvasWidthBlocksAtom, hasGridAtom } from '../../atoms'
 
 const GameCanvas = () => {
   const canvasRef = useRef(null)
@@ -11,6 +11,7 @@ const GameCanvas = () => {
   const keysRef = useRef(keys)
   const [canvasHeightBlocks] = useAtom(canvasHeightBlocksAtom)
   const [canvasWidthBlocks] = useAtom(canvasWidthBlocksAtom)
+  const [hasGrid] = useAtom(hasGridAtom)
   const BLOCK_SIZE = 64
   const CANVAS_HEIGHT = canvasHeightBlocks * BLOCK_SIZE // 9 tiles high
   const CANVAS_WIDTH = canvasWidthBlocks * BLOCK_SIZE // 16 tiles wide
@@ -31,7 +32,8 @@ const GameCanvas = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       // Draw the grid
-      canvasGrid(ctx)
+      console.log('hasGrid', hasGrid)
+      hasGrid && canvasGrid(ctx)
 
       // Draw actors
       actors.forEach((actor) => actor.draw(ctx))
