@@ -22,13 +22,6 @@
   padding: 0 calc(2 * var(--spacing-xl)); /* Add padding to the left and right */
 }
 
-.edit__button {
-  position: fixed;
-  bottom: var(--spacing-xl);
-  right: var(--spacing-xl);
-  z-index: 1000;
-}
-
 a {
   font-weight: 500;
   color: #646cff;

@@ -2,13 +2,18 @@ import { useRef, useEffect } from 'react'
 import { useKeyInput } from './hooks/useKeyInput'
 import { canvasGrid, gameLoop, initializeCanvas } from './utils'
 import { actors } from '../Actors/actors'
+import { useAtom } from 'jotai'
+import { canvasHeightBlocksAtom, canvasWidthBlocksAtom } from '../../atoms'
 
 const GameCanvas = () => {
   const canvasRef = useRef(null)
   const keys = useKeyInput()
   const keysRef = useRef(keys)
-  const CANVAS_HEIGHT = 64 * 9 // 9 tiles high
-  const CANVAS_WIDTH = 64 * 16 // 16 tiles wide
+  const [canvasHeightBlocks] = useAtom(canvasHeightBlocksAtom)
+  const [canvasWidthBlocks] = useAtom(canvasWidthBlocksAtom)
+  const BLOCK_SIZE = 64
+  const CANVAS_HEIGHT = canvasHeightBlocks * BLOCK_SIZE // 9 tiles high
+  const CANVAS_WIDTH = canvasWidthBlocks * BLOCK_SIZE // 16 tiles wide
 
   useEffect(() => {
     keysRef.current = keys
