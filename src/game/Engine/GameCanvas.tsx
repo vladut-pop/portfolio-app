@@ -35,8 +35,6 @@ const GameCanvas = () => {
     isEditRef.current = isEdit
   }, [isEdit])
 
-  console.log(isDragging, position)
-
   // TODO: get a better understanding of ref and gameLoop
   useEffect(() => {
     console.log('GameCanvas useEffect')
@@ -58,7 +56,7 @@ const GameCanvas = () => {
       actors.forEach((actor) => actor.draw(ctx))
 
       // Draw border around actors
-      isEditRef.current &&
+      if (isEditRef.current) {
         actors.forEach((actor) => {
           ctx.strokeStyle = 'gray'
           ctx.lineWidth = 1
@@ -66,6 +64,8 @@ const GameCanvas = () => {
           ctx.strokeRect(actor.position.x, actor.position.y, actor.sWidth, actor.sHeight)
           ctx.setLineDash([])
         })
+        console.log(isDragging, position)
+      }
     }
     gameLoop(update, render)
   }, [])

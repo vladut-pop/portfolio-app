@@ -10,7 +10,7 @@ export const addGravity = (actor: PlayerActor) => {
   actor.gravity.gravitySpeed += actor.gravity.gravity
   actor.gravity.gravitySpeed = Math.min(actor.gravity.gravitySpeed, MAXIMUM_GRAVITY_SPEED)
   const newY = actor.position.y + actor.gravity.gravitySpeed
-  if (isColliding(actor.position.x, newY, actor.sWidth, actor.sHeight, actors)) {
+  if (isColliding(actor.position.x, newY, actor.sWidth, actor.sHeight, actors).collided) {
     //TODO: Need a proper solution for impact
     actor.gravity.gravitySpeed = 0
   } else {

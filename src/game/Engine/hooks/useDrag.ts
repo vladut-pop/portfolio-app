@@ -16,7 +16,6 @@ export const useDrag = (canvasRef: React.RefObject<HTMLCanvasElement>) => {
   const handleMouseMove = (event: MouseEvent) => {
     if (isDragging) {
       updatePosition(event)
-      console.log('Dragging', position.x, position.y)
     }
   }
   //   https://stackoverflow.com/questions/55677/how-do-i-get-the-coordinates-of-a-mouse-click-on-a-canvas-element
