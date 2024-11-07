@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { useKeyInput } from './hooks/useKeyInput'
-import { canvasGrid, gameLoop, initializeCanvas } from './utils'
+import { canvasGrid, gameLoop } from './utils'
 import { actors } from '../Actors/actors'
 import { useAtom } from 'jotai'
 import { canvasHeightBlocksAtom, canvasWidthBlocksAtom } from '../../atoms'
@@ -21,7 +21,7 @@ const GameCanvas = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current! as HTMLCanvasElement
-    const ctx = initializeCanvas(canvas) as CanvasRenderingContext2D
+    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
     const update = (deltaTime: number) => {
       // Update actors based on keys and deltaTime
       actors.forEach((actor) => actor.update(deltaTime, keysRef.current))
