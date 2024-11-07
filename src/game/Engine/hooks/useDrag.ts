@@ -1,31 +1,31 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 export const useDrag = (canvasRef: React.RefObject<HTMLCanvasElement>) => {
-  const [isDragging, setIsDragging] = useState(false)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const isDraggingRef = useRef(false)
+  const positionRef = useRef({ x: 0, y: 0 })
 
   const handleMouseDown = (event: MouseEvent) => {
-    setIsDragging(true)
+    isDraggingRef.current = true
     updatePosition(event)
   }
 
   const handleMouseUp = () => {
-    setIsDragging(false)
+    isDraggingRef.current = false
   }
 
   const handleMouseMove = (event: MouseEvent) => {
-    if (isDragging) {
+    if (isDraggingRef.current) {
       updatePosition(event)
     }
   }
-  //   https://stackoverflow.com/questions/55677/how-do-i-get-the-coordinates-of-a-mouse-click-on-a-canvas-element
+
   const updatePosition = (event: MouseEvent) => {
     if (canvasRef.current) {
       const rect = canvasRef.current.getBoundingClientRect()
-      setPosition({
+      positionRef.current = {
         x: event.clientX - rect.left,
         y: event.clientY - rect.top,
-      })
+      }
     }
   }
 
@@ -39,7 +39,7 @@ export const useDrag = (canvasRef: React.RefObject<HTMLCanvasElement>) => {
       window.removeEventListener('mouseup', handleMouseUp)
       window.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [isDragging])
+  }, [])
 
-  return { isDragging, position }
+  return { isDraggingRef, positionRef }
 }

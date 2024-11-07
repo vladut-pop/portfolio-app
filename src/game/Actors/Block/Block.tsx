@@ -15,7 +15,7 @@ export const Block = (x = 0, y = 0): BlockActor => {
     },
     draw(ctx) {
       ctx.fillStyle = 'green'
-      ctx.fillRect(x, y, this.sWidth, this.sHeight)
+      ctx.fillRect(this.position.x, this.position.y, this.sWidth, this.sHeight)
     },
   }
 }

@@ -5,6 +5,7 @@ import { canvasGrid, gameLoop } from './utils'
 import { actors } from '../Actors/actors'
 import { useAtom } from 'jotai'
 import { canvasHeightBlocksAtom, canvasWidthBlocksAtom, hasGridAtom, isEditAtom } from '../../atoms'
+import { isColliding } from './utils/collisionDetection'
 
 const GameCanvas = () => {
   console.log('GameCanvas component')
@@ -18,7 +19,7 @@ const GameCanvas = () => {
   const [hasGrid] = useAtom(hasGridAtom)
   const hasGridRef = useRef(hasGrid)
   const isEditRef = useRef(isEdit)
-  const { isDragging, position } = useDrag(canvasRef)
+  const { isDraggingRef, positionRef } = useDrag(canvasRef)
   const BLOCK_SIZE = 64
   const CANVAS_HEIGHT = canvasHeightBlocks * BLOCK_SIZE // 9 tiles high
   const CANVAS_WIDTH = canvasWidthBlocks * BLOCK_SIZE // 16 tiles wide
@@ -63,8 +64,21 @@ const GameCanvas = () => {
           ctx.setLineDash([5, 3])
           ctx.strokeRect(actor.position.x, actor.position.y, actor.sWidth, actor.sHeight)
           ctx.setLineDash([])
+
+          if (isDraggingRef.current) {
+            const { collided, block } = isColliding(
+              positionRef.current.x,
+              positionRef.current.y,
+              1,
+              1,
+              actors,
+            )
+            if (collided && block) {
+              block.position.x = positionRef.current.x - block.sWidth / 2
+              block.position.y = positionRef.current.y - block.sHeight / 2
+            }
+          }
         })
-        console.log(isDragging, position)
       }
     }
     gameLoop(update, render)
