@@ -2,4 +2,4 @@ export type ButtonProps = {
   variant?: 'primary'
   children: string
   className?: string
-} & React.HTMLProps<HTMLButtonElement>
+} & Omit<React.HTMLProps<HTMLButtonElement>, 'type'>

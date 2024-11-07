@@ -1,9 +1,2 @@
 .edit {
-  z-index: 1000;
-}
-
-.edit__button {
-  position: fixed;
-  bottom: var(--spacing-xl);
-  right: var(--spacing-xl);
 }

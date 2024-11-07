@@ -1,4 +1,3 @@
-import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import styles from './Edit.module.css'
 import { useAtom } from 'jotai'
@@ -33,7 +32,6 @@ const Edit: React.FC = () => {
         value={canvasWidthBlocks}
         onChange={handleWidthChange}
       />
-      <Button className={styles.edit__button}>Edit mode</Button>
     </div>
   )
 }

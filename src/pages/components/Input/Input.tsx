@@ -10,6 +10,7 @@ const Input: React.FC<InputProps> = ({
   onChange,
   placeholder = '',
   required = false,
+  ...props
 }) => {
   return (
     <div className={styles.inputContainer}>
@@ -24,6 +25,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         required={required}
         className={styles.input}
+        {...props}
       />
     </div>
   )
