@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { useKeyInput } from './hooks/useKeyInput'
+import { useDrag } from './hooks/useDrag'
 import { canvasGrid, gameLoop } from './utils'
 import { actors } from '../Actors/actors'
 import { useAtom } from 'jotai'
@@ -13,6 +14,7 @@ const GameCanvas = () => {
   const [canvasWidthBlocks] = useAtom(canvasWidthBlocksAtom)
   const [hasGrid] = useAtom(hasGridAtom)
   const hasGridRef = useRef(hasGrid)
+  const { isDragging, position } = useDrag(canvasRef)
   const BLOCK_SIZE = 64
   const CANVAS_HEIGHT = canvasHeightBlocks * BLOCK_SIZE // 9 tiles high
   const CANVAS_WIDTH = canvasWidthBlocks * BLOCK_SIZE // 16 tiles wide
@@ -24,6 +26,8 @@ const GameCanvas = () => {
   useEffect(() => {
     hasGridRef.current = hasGrid
   }, [hasGrid])
+
+  console.log('GameCanvas', isDragging, position)
 
   // TODO: get a better understanding of ref and gameLoop
   useEffect(() => {
