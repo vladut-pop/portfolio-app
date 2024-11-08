@@ -1,26 +1,26 @@
 import { BaseActorProps } from '../../Actors/BaseActor'
 
-type CollisionResult = {
-  collided: boolean
-  block: BaseActorProps | null
-}
-
 export const isColliding = (
   newX: number,
   newY: number,
   sWidth: number,
   sHeight: number,
   actors: BaseActorProps[],
-): CollisionResult => {
-  for (const block of actors.filter((actor) => actor.type !== 'PLAYER')) {
+  filterTypes?: BaseActorProps['type'][],
+): BaseActorProps | null => {
+  const filteredActors = filterTypes
+    ? actors.filter((actor) => !filterTypes.includes(actor.type))
+    : actors
+
+  for (const block of filteredActors) {
     if (
       newX + sWidth > block.position.x &&
       newX < block.position.x + block.sWidth * block.scale &&
       newY + sHeight > block.position.y &&
       newY < block.position.y + block.sHeight * block.scale
     ) {
-      return { collided: true, block }
+      return block
     }
   }
-  return { collided: false, block: null }
+  return null
 }

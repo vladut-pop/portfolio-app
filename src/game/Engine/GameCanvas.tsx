@@ -66,14 +66,8 @@ const GameCanvas = () => {
           ctx.setLineDash([])
 
           if (isDraggingRef.current) {
-            const { collided, block } = isColliding(
-              positionRef.current.x,
-              positionRef.current.y,
-              1,
-              1,
-              actors,
-            )
-            if (collided && block) {
+            const block = isColliding(positionRef.current.x, positionRef.current.y, 1, 1, actors)
+            if (block) {
               block.position.x = positionRef.current.x - block.sWidth / 2
               block.position.y = positionRef.current.y - block.sHeight / 2
             }

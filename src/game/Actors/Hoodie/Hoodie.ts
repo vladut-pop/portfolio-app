@@ -53,7 +53,7 @@ export const Hoodie = (position = { x: 50, y: 50 }, speed = 250): PlayerActor =>
         this.currentAction = 'idle'
       }
 
-      if (!isColliding(newX, newY, 64, 64, actors).collided) {
+      if (!isColliding(newX, newY, 64, 64, actors, ['PLAYER'])) {
         this.position.x = newX
         this.position.y = newY
       }
