@@ -7,7 +7,7 @@ import { PlayerActor } from './types'
 const redHoodImage = new Image()
 redHoodImage.src = red_hood
 
-export const Hoodie = (position = { x: 50, y: 50 }, speed = 250): PlayerActor => {
+export const Hoodie = (position = { x: 50, y: 100 }, speed = 250): PlayerActor => {
   return {
     position,
     type: 'PLAYER',
@@ -15,7 +15,7 @@ export const Hoodie = (position = { x: 50, y: 50 }, speed = 250): PlayerActor =>
     // sHeight: 1463 / 11, // Dimensions of the sprite sheet divided by the number of frames
     // sWidth: 1344 / 12,
     spriteActions: {
-      idle: { row: 0, frames: 1 },
+      idle: { row: 0, frames: 2 },
       walk: { row: 1, frames: 12 },
       jump: { row: 3, frames: 12 },
     },
@@ -53,7 +53,7 @@ export const Hoodie = (position = { x: 50, y: 50 }, speed = 250): PlayerActor =>
         this.currentAction = 'idle'
       }
 
-      if (!isColliding(newX, newY, 64, 64, actors, ['PLAYER'])) {
+      if (!isColliding(newX, newY, this.sHeight, this.sWidth, actors, ['PLAYER'])) {
         this.position.x = newX
         this.position.y = newY
       }
@@ -66,7 +66,7 @@ export const Hoodie = (position = { x: 50, y: 50 }, speed = 250): PlayerActor =>
       // ctx.drawImage(
       //   redHoodImage, // Image source
       //   this.sWidth * this.currentFrame, // Source x
-      //   this.sHeight * spriteActions[this.currentAction].row, // Source y
+      //   this.sHeight * this.spriteActions[this.currentAction].row, // Source y
       //   this.sWidth, // Source width
       //   this.sHeight, // Source height
       //   this.position.x, // Destination x

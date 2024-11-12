@@ -1,11 +1,12 @@
 import { useRef, useEffect } from 'react'
 import { useKeyInput } from './hooks/useKeyInput'
 import { useDrag } from './hooks/useDrag'
-import { canvasGrid, gameLoop } from './utils'
+import { canvasGrid, canvasBackground, gameLoop } from './utils'
 import { actors } from '../Actors/actors'
 import { useAtom } from 'jotai'
 import { canvasHeightBlocksAtom, canvasWidthBlocksAtom, hasGridAtom, isEditAtom } from '../../atoms'
 import { isColliding } from './utils/collisionDetection'
+import { PlayerActor } from '../Actors/Hoodie'
 
 const GameCanvas = () => {
   console.log('GameCanvas component')
@@ -50,14 +51,21 @@ const GameCanvas = () => {
       // Clear and redraw the canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+      // Get PLAYER position
+      const player = actors.find((actor) => actor.type === 'PLAYER') as PlayerActor
+
+      // Draw background with parallax effect
+      canvasBackground(ctx, player)
+
       // Draw the grid
       hasGridRef.current && canvasGrid(ctx)
 
       // Draw actors
       actors.forEach((actor) => actor.draw(ctx))
 
-      // Draw border around actors
+      // Edit mode
       if (isEditRef.current) {
+        // Draw border around actors
         actors.forEach((actor) => {
           ctx.strokeStyle = 'gray'
           ctx.lineWidth = 1
@@ -65,6 +73,7 @@ const GameCanvas = () => {
           ctx.strokeRect(actor.position.x, actor.position.y, actor.sWidth, actor.sHeight)
           ctx.setLineDash([])
 
+          // Drag and drop actors
           if (isDraggingRef.current) {
             const block = isColliding(positionRef.current.x, positionRef.current.y, 1, 1, actors)
             if (block) {
