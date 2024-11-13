@@ -1,5 +1,6 @@
 export const canvasGrid = (ctx: CanvasRenderingContext2D): void => {
   const { width, height } = ctx.canvas
+  ctx.fillStyle = 'red'
   const color = 'rgba(0, 0, 0, 0.8)'
   const GRID_BLOCK_SIZE = 32
   ctx.strokeStyle = color
