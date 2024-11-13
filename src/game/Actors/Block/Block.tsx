@@ -4,8 +4,7 @@ export const Block = (x = 0, y = 0): BlockActor => {
   return {
     type: 'BLOCK',
     position: { x, y },
-    sHeight: 64,
-    sWidth: 64,
+    size: { width: 64, height: 64 },
     spriteActions: { idle: { row: 0, frames: 1 } },
     currentFrame: 1,
     currentAction: 'idle',
@@ -14,7 +13,7 @@ export const Block = (x = 0, y = 0): BlockActor => {
     },
     draw(ctx) {
       ctx.fillStyle = 'green'
-      ctx.fillRect(this.position.x, this.position.y, this.sWidth, this.sHeight)
+      ctx.fillRect(this.position.x, this.position.y, this.size.width, this.size.height)
     },
   }
 }

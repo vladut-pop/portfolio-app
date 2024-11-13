@@ -12,15 +12,12 @@ export const Hoodie = (position = { x: 50, y: 100 }, speed = 250): PlayerActor =
     position,
     type: 'PLAYER',
     speed,
-    // sHeight: 1463 / 11, // Dimensions of the sprite sheet divided by the number of frames
-    // sWidth: 1344 / 12,
     spriteActions: {
       idle: { row: 0, frames: 2 },
       walk: { row: 1, frames: 12 },
       jump: { row: 3, frames: 12 },
     },
-    sHeight: 64,
-    sWidth: 64,
+    size: { width: 64, height: 64 },
     currentFrame: 0,
     frameTimer: 0,
     frameInterval: 0.1,
@@ -52,7 +49,7 @@ export const Hoodie = (position = { x: 50, y: 100 }, speed = 250): PlayerActor =
         this.currentAction = 'idle'
       }
 
-      if (!isColliding(newX, newY, this.sHeight, this.sWidth, actors, ['PLAYER', 'BUG'])) {
+      if (!isColliding(newX, newY, this.size.height, this.size.width, actors, ['PLAYER', 'BUG'])) {
         this.position.x = newX
         this.position.y = newY
       }
@@ -61,17 +58,17 @@ export const Hoodie = (position = { x: 50, y: 100 }, speed = 250): PlayerActor =
     },
     draw(ctx) {
       ctx.fillStyle = 'red'
-      ctx.fillRect(this.position.x, this.position.y, this.sHeight, this.sWidth)
+      ctx.fillRect(this.position.x, this.position.y, this.size.height, this.size.width)
       // ctx.drawImage(
       //   redHoodImage, // Image source
-      //   this.sWidth * this.currentFrame, // Source x
-      //   this.sHeight * this.spriteActions[this.currentAction].row, // Source y
-      //   this.sWidth, // Source width
-      //   this.sHeight, // Source height
+      //   this.size.width * this.currentFrame, // Source x
+      //   this.size.height * this.spriteActions[this.currentAction].row, // Source y
+      //   this.size.width, // Source width
+      //   this.size.height, // Source height
       //   this.position.x, // Destination x
       //   this.position.y, // Destination y
-      //   this.sWidth, // Destination width
-      //   this.sHeight, // Destination height
+      //   this.size.width, // Destination width
+      //   this.size.height, // Destination height
       // )
     },
   }

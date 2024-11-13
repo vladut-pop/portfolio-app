@@ -70,15 +70,15 @@ const GameCanvas = () => {
           ctx.strokeStyle = 'gray'
           ctx.lineWidth = 1
           ctx.setLineDash([5, 3])
-          ctx.strokeRect(actor.position.x, actor.position.y, actor.sWidth, actor.sHeight)
+          ctx.strokeRect(actor.position.x, actor.position.y, actor.size.width, actor.size.height)
           ctx.setLineDash([])
 
           // Drag and drop actors
           if (isDraggingRef.current) {
             const block = isColliding(positionRef.current.x, positionRef.current.y, 1, 1, actors)
             if (block) {
-              block.position.x = positionRef.current.x - block.sWidth / 2
-              block.position.y = positionRef.current.y - block.sHeight / 2
+              block.position.x = positionRef.current.x - block.size.width / 2
+              block.position.y = positionRef.current.y - block.size.height / 2
             }
           }
         })

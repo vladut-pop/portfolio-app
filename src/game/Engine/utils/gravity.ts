@@ -1,16 +1,22 @@
 import { actors } from '../../Actors/actors'
-import { PlayerActor } from '../../Actors/Hoodie'
+import { Position, Size } from '../../Actors/BaseActor'
 import { isColliding } from './collisionDetection'
 
-export type Gravity = { gravity: number; gravitySpeed: number }
+export type Gravity = { gravity: { gravity: number; gravitySpeed: number } }
+export type GravityActor = Position & Size & Gravity
 
 const MAXIMUM_GRAVITY_SPEED = 64
 
-export const addGravity = (actor: PlayerActor) => {
+export const addGravity = (actor: GravityActor) => {
   actor.gravity.gravitySpeed += actor.gravity.gravity
   actor.gravity.gravitySpeed = Math.min(actor.gravity.gravitySpeed, MAXIMUM_GRAVITY_SPEED)
   const newY = actor.position.y + actor.gravity.gravitySpeed
-  if (isColliding(actor.position.x, newY, actor.sWidth, actor.sHeight, actors, ['PLAYER', 'BUG'])) {
+  if (
+    isColliding(actor.position.x, newY, actor.size.width, actor.size.width, actors, [
+      'PLAYER',
+      'BUG',
+    ])
+  ) {
     //TODO: Need a proper solution for impact
     actor.gravity.gravitySpeed = 0
   } else {

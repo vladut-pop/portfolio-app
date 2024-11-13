@@ -3,8 +3,8 @@ import { BaseActorProps } from '../../Actors/BaseActor'
 export const isColliding = (
   newX: number,
   newY: number,
-  sWidth: number,
-  sHeight: number,
+  width: number,
+  height: number,
   actors: BaseActorProps[],
   filterTypes?: BaseActorProps['type'][],
 ): BaseActorProps | null => {
@@ -14,10 +14,10 @@ export const isColliding = (
 
   for (const block of filteredActors) {
     if (
-      newX + sWidth > block.position.x &&
-      newX < block.position.x + block.sWidth &&
-      newY + sHeight > block.position.y &&
-      newY < block.position.y + block.sHeight
+      newX + width > block.position.x &&
+      newX < block.position.x + block.size.width &&
+      newY + height > block.position.y &&
+      newY < block.position.y + block.size.height
     ) {
       return block
     }
