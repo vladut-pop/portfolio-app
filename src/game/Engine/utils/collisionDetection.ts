@@ -15,9 +15,9 @@ export const isColliding = (
   for (const block of filteredActors) {
     if (
       newX + sWidth > block.position.x &&
-      newX < block.position.x + block.sWidth * block.scale &&
+      newX < block.position.x + block.sWidth &&
       newY + sHeight > block.position.y &&
-      newY < block.position.y + block.sHeight * block.scale
+      newY < block.position.y + block.sHeight
     ) {
       return block
     }

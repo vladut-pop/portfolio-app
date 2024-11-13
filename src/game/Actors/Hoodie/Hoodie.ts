@@ -21,7 +21,6 @@ export const Hoodie = (position = { x: 50, y: 100 }, speed = 250): PlayerActor =
     },
     sHeight: 64,
     sWidth: 64,
-    scale: 2,
     currentFrame: 0,
     frameTimer: 0,
     frameInterval: 0.1,
@@ -53,7 +52,7 @@ export const Hoodie = (position = { x: 50, y: 100 }, speed = 250): PlayerActor =
         this.currentAction = 'idle'
       }
 
-      if (!isColliding(newX, newY, this.sHeight, this.sWidth, actors, ['PLAYER'])) {
+      if (!isColliding(newX, newY, this.sHeight, this.sWidth, actors, ['PLAYER', 'BUG'])) {
         this.position.x = newX
         this.position.y = newY
       }
@@ -71,8 +70,8 @@ export const Hoodie = (position = { x: 50, y: 100 }, speed = 250): PlayerActor =
       //   this.sHeight, // Source height
       //   this.position.x, // Destination x
       //   this.position.y, // Destination y
-      //   this.sWidth * this.scale, // Destination width
-      //   this.sHeight * this.scale, // Destination height
+      //   this.sWidth, // Destination width
+      //   this.sHeight, // Destination height
       // )
     },
   }
