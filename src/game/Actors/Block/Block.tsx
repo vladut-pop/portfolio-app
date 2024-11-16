@@ -5,9 +5,6 @@ export const Block = (x = 0, y = 0): BlockActor => {
     type: 'BLOCK',
     position: { x, y },
     size: { width: 64, height: 64 },
-    spriteActions: { idle: { row: 0, frames: 1 } },
-    currentFrame: 1,
-    currentAction: 'idle',
     update() {
       return null
     },

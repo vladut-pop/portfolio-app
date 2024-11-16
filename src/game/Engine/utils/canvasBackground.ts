@@ -27,7 +27,9 @@ export const canvasBackground = (ctx: CanvasRenderingContext2D, player: PlayerAc
     const backgroundX = -player.position.x * parallaxFactor
     const backgroundY =
       groundOffset +
-      (background.height - player.position.y - player.sHeight + groundOffset) * parallaxFactor
+      ((background.height - player.position.y - player.size.height + groundOffset) *
+        parallaxFactor) /
+        2
 
     // Calculate the number of times the image needs to be drawn to cover the canvas width
     const numImages = Math.ceil(width / background.width) + 1

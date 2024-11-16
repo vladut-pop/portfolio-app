@@ -1,8 +1,4 @@
 import { Gravity } from '../../Engine/utils/gravity'
-import { BaseActorProps } from '../BaseActor'
+import { Animation, BaseActorProps } from '../BaseActor'
 
-export type PlayerActor = BaseActorProps & {
-  frameTimer: number
-  frameInterval: number
-  speed: number
-} & Gravity
+export type PlayerActor = BaseActorProps & Gravity & Animation
