@@ -79,6 +79,7 @@ const GameCanvas = () => {
         })
       }
 
+      // TODO: Fix the drag lag
       // Drag and drop actors
       if (isDraggingRef.current) {
         const block = isColliding(positionRef.current.x, positionRef.current.y, 1, 1, actors)

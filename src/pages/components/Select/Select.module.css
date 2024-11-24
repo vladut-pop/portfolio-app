@@ -1,0 +1,51 @@
+.select {
+  position: relative;
+  display: inline-block;
+}
+
+.selectToggle {
+  border-radius: var(--spacing-s);
+  border: 1px solid transparent;
+  padding: var(--spacing-s);
+  cursor: pointer;
+}
+
+.selectToggle:hover {
+  border-color: #646cff;
+}
+
+.selectMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: var(--spacing-s);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-xs) 0;
+  list-style: none;
+}
+
+.selectOption {
+  padding: var(--spacing-s);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.selectOption:hover {
+  background-color: #f0f0f0;
+}
+
+.optionImage {
+  width: 24px;
+  height: 24px;
+  margin-right: var(--spacing-s);
+}
+
+.selectedOption {
+  display: flex;
+  align-items: center;
+}
