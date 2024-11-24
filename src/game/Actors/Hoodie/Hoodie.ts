@@ -37,7 +37,6 @@ export const Hoodie = (position = { x: 50, y: 100 }, speed = 250): PlayerActor =
 
       let newX = this.position.x
       let newY = this.position.y
-      console.log()
       if (keys['ArrowUp'] || keys['W'] || keys[' '] || keys['w']) {
         newY -= this.animation.speed * deltaTime + 10
         this.animation.currentAction = 'jump'
