@@ -1,3 +1,3 @@
 import { BaseActorProps } from '../BaseActor'
 
-export type BlockActor = BaseActorProps
+export type BlockActor = BaseActorProps & { src?: string }

@@ -1,16 +1,30 @@
 import { BlockActor } from './types'
 
-export const Block = (x = 0, y = 0): BlockActor => {
+export const Block = ({ position: { x = 0, y = 0 }, src = '' }): BlockActor => {
+  const img = new Image()
+  img.src = src
+
   return {
     type: 'BLOCK',
     position: { x, y },
-    size: { width: 64, height: 64 },
+    size: { width: 32, height: 32 },
+    src: src,
     update() {
       return null
     },
     draw(ctx) {
-      ctx.fillStyle = 'green'
-      ctx.fillRect(this.position.x, this.position.y, this.size.width, this.size.height)
+      if (src !== '') {
+        if (img.complete) {
+          ctx.drawImage(img, this.position.x, this.position.y, this.size.width, this.size.height)
+        } else {
+          img.onload = () => {
+            ctx.drawImage(img, this.position.x, this.position.y, this.size.width, this.size.height)
+          }
+        }
+      } else {
+        ctx.fillStyle = 'green'
+        ctx.fillRect(this.position.x, this.position.y, this.size.width, this.size.height)
+      }
     },
   }
 }

@@ -1,0 +1,25 @@
+.accordion {
+  margin-bottom: var(--spacing-m);
+}
+
+.accordion__button {
+  width: 100%;
+  padding: var(--spacing-s);
+  border: 1px solid #ccc;
+  border-radius: var(--spacing-xs);
+  font-weight: bold;
+  cursor: pointer;
+  text-align: left;
+  background-color: transparent;
+}
+
+.accordion__button:hover {
+  background-color: rgba(224, 224, 224, 0.1); /* Reduced opacity */
+}
+
+.accordion__content {
+  padding: var(--spacing-s);
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 var(--spacing-xs) var(--spacing-xs);
+}

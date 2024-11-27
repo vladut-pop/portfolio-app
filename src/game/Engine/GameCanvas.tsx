@@ -10,9 +10,11 @@ import {
   hasGridAtom,
   isEditAtom,
   ctxAtom,
+  selectedActorSrcAtom,
 } from '../../atoms'
 import { isColliding } from './utils/collisionDetection'
 import { PlayerActor } from '../Actors/Hoodie'
+import { Block } from '../Actors/Block'
 
 const GameCanvas = () => {
   const canvasRef = useRef(null)
@@ -20,9 +22,11 @@ const GameCanvas = () => {
   const keysRef = useRef(keys)
   const [canvasHeightBlocks] = useAtom(canvasHeightBlocksAtom)
   const [canvasWidthBlocks] = useAtom(canvasWidthBlocksAtom)
+  const [selectedActorSrc] = useAtom(selectedActorSrcAtom)
   const [isEdit] = useAtom(isEditAtom)
   const [hasGrid] = useAtom(hasGridAtom)
   const hasGridRef = useRef(hasGrid)
+  const selectedActorSrcRef = useRef(selectedActorSrc)
   const isEditRef = useRef(isEdit)
   const [, setCtx] = useAtom(ctxAtom)
   const { isDraggingRef, positionRef } = useDrag(canvasRef)
@@ -33,6 +37,10 @@ const GameCanvas = () => {
   useEffect(() => {
     keysRef.current = keys
   }, [keys])
+
+  useEffect(() => {
+    selectedActorSrcRef.current = selectedActorSrc
+  }, [selectedActorSrc])
 
   useEffect(() => {
     hasGridRef.current = hasGrid
@@ -81,11 +89,22 @@ const GameCanvas = () => {
 
       // TODO: Fix the drag lag
       // Drag and drop actors
-      if (isDraggingRef.current) {
+      if (isDraggingRef.current && isEditRef.current) {
         const block = isColliding(positionRef.current.x, positionRef.current.y, 1, 1, actors)
         if (block) {
           block.position.x = positionRef.current.x - block.size.width / 2
           block.position.y = positionRef.current.y - block.size.height / 2
+        } else {
+          console.log('selectedActorSrc', selectedActorSrcRef.current)
+          actors.push(
+            Block({
+              position: {
+                x: positionRef.current.x - BLOCK_SIZE / 2,
+                y: positionRef.current.y - BLOCK_SIZE / 2,
+              },
+              src: selectedActorSrcRef.current,
+            }),
+          )
         }
       }
     }
