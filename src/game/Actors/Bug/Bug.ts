@@ -1,6 +1,6 @@
-import { isColliding } from '../../Engine/utils'
+// import { isColliding } from '../../Engine/utils'
 import { addGravity } from '../../Engine/utils/gravity'
-import { actors } from '../actors'
+// import { actors } from '../actors'
 import { BugActor } from './types'
 import { hasLineOfSight } from './utils'
 type Bug = {
