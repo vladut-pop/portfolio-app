@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { useKeyInput } from './hooks/useKeyInput'
 import { useDrag } from './hooks/useDrag'
-import { canvasGrid, canvasBackground, gameLoop } from './utils'
+import { canvasGrid, canvasBackground, gameLoop, adjustToClosest } from './utils'
 import { actors } from '../Actors/actors'
 import { useAtom } from 'jotai'
 import {
@@ -11,10 +11,12 @@ import {
   isEditAtom,
   ctxAtom,
   selectedActorSrcAtom,
+  clickedActorAtom,
 } from '../../atoms'
 import { isColliding } from './utils/collisionDetection'
 import { PlayerActor } from '../Actors/Hoodie'
 import { Block } from '../Actors/Block'
+import { useClick } from './hooks/useClick'
 
 const GameCanvas = () => {
   const canvasRef = useRef(null)
@@ -24,12 +26,15 @@ const GameCanvas = () => {
   const [canvasWidthBlocks] = useAtom(canvasWidthBlocksAtom)
   const [selectedActorSrc] = useAtom(selectedActorSrcAtom)
   const [isEdit] = useAtom(isEditAtom)
+  const [clickedActor] = useAtom(clickedActorAtom)
+  const clickedActorRef = useRef(clickedActor)
   const [hasGrid] = useAtom(hasGridAtom)
   const hasGridRef = useRef(hasGrid)
   const selectedActorSrcRef = useRef(selectedActorSrc)
   const isEditRef = useRef(isEdit)
   const [, setCtx] = useAtom(ctxAtom)
-  const { isDraggingRef, positionRef } = useDrag(canvasRef)
+  const { isDraggingRef, draggedPositionRef } = useDrag(canvasRef)
+  const { isClickedRef, clickedPositionRef } = useClick(canvasRef)
   const BLOCK_SIZE = 64
   const CANVAS_HEIGHT = canvasHeightBlocks * BLOCK_SIZE // 9 tiles high
   const CANVAS_WIDTH = canvasWidthBlocks * BLOCK_SIZE // 16 tiles wide
@@ -55,6 +60,7 @@ const GameCanvas = () => {
     const canvas = canvasRef.current! as HTMLCanvasElement
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
     setCtx(ctx)
+
     const update = (deltaTime: number) => {
       // Update actors based on keys and deltaTime
       actors.forEach((actor) => actor.update(deltaTime, keysRef.current))
@@ -87,27 +93,44 @@ const GameCanvas = () => {
         })
       }
 
-      // TODO: Fix the drag lag
+      // Click to select actors
+      if (isEditRef.current && isClickedRef.current) {
+        clickedActorRef.current = isColliding(
+          clickedPositionRef.current.x,
+          clickedPositionRef.current.y,
+          1,
+          1,
+          actors,
+        )
+        isClickedRef.current = false
+      }
+
       // Drag and drop actors
-      if (isDraggingRef.current && isEditRef.current) {
-        const block = isColliding(positionRef.current.x, positionRef.current.y, 5, 5, actors)
-        if (block) {
-          block.position.x = positionRef.current.x - block.size.width / 2
-          block.position.y = positionRef.current.y - block.size.height / 2
-        } else if (
-          !isColliding(positionRef.current.x - 16, positionRef.current.y - 16, 32, 32, actors)
-        ) {
-          console.log('selectedActorSrc', selectedActorSrcRef.current)
-          actors.push(
-            Block({
-              position: {
-                x: positionRef.current.x - 16,
-                y: positionRef.current.y - 16,
-              },
-              src: selectedActorSrcRef.current,
-            }),
-          )
-        }
+      if (isDraggingRef.current && isEditRef.current && clickedActorRef.current) {
+        clickedActorRef.current.position.x = adjustToClosest(draggedPositionRef.current.x)
+        clickedActorRef.current.position.y = adjustToClosest(draggedPositionRef.current.y)
+      }
+
+      if (
+        isDraggingRef.current &&
+        !isColliding(
+          adjustToClosest(draggedPositionRef.current.x),
+          adjustToClosest(draggedPositionRef.current.y),
+          32,
+          32,
+          actors,
+        ) &&
+        selectedActorSrcRef.current
+      ) {
+        actors.push(
+          Block({
+            position: {
+              x: adjustToClosest(draggedPositionRef.current.x),
+              y: adjustToClosest(draggedPositionRef.current.y),
+            },
+            src: selectedActorSrcRef.current,
+          }),
+        )
       }
     }
     gameLoop(update, render)
