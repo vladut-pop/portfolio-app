@@ -116,8 +116,8 @@ const GameCanvas = () => {
         !isColliding(
           adjustToClosest(draggedPositionRef.current.x),
           adjustToClosest(draggedPositionRef.current.y),
-          32,
-          32,
+          64,
+          64,
           actors,
         ) &&
         selectedActorSrcRef.current

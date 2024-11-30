@@ -1,13 +1,14 @@
 import { BlockActor } from './types'
 
-export const Block = ({ position: { x = 0, y = 0 }, src = '' }): BlockActor => {
+export const Block = ({ position: { x = 0, y = 0 }, src = '', scale = 2 }): BlockActor => {
   const img = new Image()
   img.src = src
 
   return {
     type: 'BLOCK',
     position: { x, y },
-    size: { width: 32, height: 32 },
+    scale: scale,
+    size: { width: 32 * scale, height: 32 * scale },
     src: src,
     update() {
       return null
