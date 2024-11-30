@@ -1,10 +1,14 @@
-// import { isColliding } from '../../Engine/utils'
 import { addGravity } from '../../Engine/utils/gravity'
-// import { actors } from '../actors'
 import { BugActor } from './types'
-import { hasLineOfSight } from './utils'
+import { getDistanceBetweenActors, hasLineOfSight } from './utils'
+import dialog_1 from '../../../assets/images/characters/actions/dialog_1.png'
+
+const awakenedImage = new Image()
+awakenedImage.src = dialog_1
+
 type Bug = {
   awarenessRange: number
+  awakened: boolean
 }
 
 export const Bug = (position = { x: 200, y: 200 }): BugActor & Bug => {
@@ -13,35 +17,24 @@ export const Bug = (position = { x: 200, y: 200 }): BugActor & Bug => {
     type: 'BUG',
     size: { width: 32, height: 32 },
     gravity: { gravity: 0.1, gravitySpeed: 0 },
-    awarenessRange: 128,
+    awarenessRange: 256,
+    awakened: false,
     update() {
-      // if (
-      //   isColliding(
-      //     this.position.x + (this.size.width - this.awarenessRange) / 2,
-      //     this.position.y + (this.size.height - this.awarenessRange) / 2,
-      //     this.awarenessRange,
-      //     this.awarenessRange,
-      //     actors,
-      //     ['BLOCK', 'BUG'],
-      //   )
-      // ) {
-      //   console.log('bug there')
-      // }
+      const { distance } = getDistanceBetweenActors({ actorA: this })
+      if (distance < this.awarenessRange) {
+        this.awakened = true
+      } else {
+        this.awakened = false
+      }
+
       addGravity(this)
     },
     draw(ctx) {
-      hasLineOfSight(this)
+      if (hasLineOfSight({ bug: this }) && this.awakened) {
+        ctx.drawImage(awakenedImage, this.position.x - 16, this.position.y - 48, 32, 32)
+      }
       ctx.fillStyle = 'blue'
       ctx.fillRect(this.position.x, this.position.y, this.size.height, this.size.width)
-
-      // Awareness range
-      // ctx.strokeStyle = 'red'
-      // ctx.strokeRect(
-      //   this.position.x + (this.size.width - this.awarenessRange) / 2,
-      //   this.position.y + (this.size.height - this.awarenessRange) / 2,
-      //   this.awarenessRange,
-      //   this.awarenessRange,
-      // )
     },
   }
 }
