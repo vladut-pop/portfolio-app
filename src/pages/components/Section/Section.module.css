@@ -1,0 +1,5 @@
+.selection__icon {
+  display: flex;
+  gap: var(--spacing-s);
+  padding: var(--spacing-xs);
+}

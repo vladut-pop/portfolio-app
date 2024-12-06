@@ -1,7 +1,8 @@
 import { data } from './data'
 import styles from './CVPage.module.css'
-import { At, GithubLogo } from '@phosphor-icons/react'
+import { At, GithubLogo, Hammer } from '@phosphor-icons/react'
 import Chips from '../components/Chips/Chips'
+import Section from '../components/Section/Section'
 
 const CVPage: React.FC = () => {
   const { name, headline, location, picture, github, email } = data.basics
@@ -28,7 +29,10 @@ const CVPage: React.FC = () => {
       </div>
       {/* <----------- basics ------------>  */}
       {/* <----------- skills ------------>  */}
-      <Chips chips={data.skills} />
+      {/* https://d3-graph-gallery.com/graph/dendrogram_radial_basic.html */}
+      <Section title="Skills" icon={<Hammer size={24} weight="thin" />}>
+        <Chips chips={data.skills} />
+      </Section>
 
       {/* <----------- skills ------------>  */}
     </div>
