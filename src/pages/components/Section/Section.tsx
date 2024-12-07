@@ -1,9 +1,5 @@
 import styles from './Section.module.css'
-type SectionProps = {
-  title: string
-  children: React.ReactNode
-  icon: React.ReactNode
-}
+import { SectionProps } from './types'
 
 const Section: React.FC<SectionProps> = ({ title, children, icon }) => {
   return (
