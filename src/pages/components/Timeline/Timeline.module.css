@@ -1,24 +1,35 @@
 .experience {
   --image-size: 48px;
+  --git-timeline-thickness: 2px;
+  --circle-size: 16px;
+
   position: relative;
+  border-inline-start: var(--git-timeline-thickness) solid #69b6d5;
+  padding: var(--spacing-xl) var(--spacing-xl);
 
   .company {
-    margin-bottom: 2rem;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    position: relative;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .company::before {
+    content: '';
+    position: absolute;
+    width: var(--spacing-xl);
+    height: 100%;
+    inset-inline-start: calc((-1 * var(--spacing-xl)) - var(--git-timeline-thickness));
+    border: var(--git-timeline-thickness) solid #69b6d5;
   }
 
   .companyHeader {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
   }
 
   .companyHeader img {
     width: var(--image-size);
     height: var(--image-size);
-    margin-right: 1rem;
+    padding-inline-start: var(--spacing-xl);
     border-radius: 50%;
   }
 
@@ -26,34 +37,32 @@
     position: relative;
   }
 
-  .projects::before {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 100%;
-    left: -16px;
-    border: 2px solid #69b6d5;
+  .project {
+    position: relative;
+    padding-inline-start: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    transition: padding 0.5s ease;
   }
 
-  .project {
-    margin-bottom: var(--spacing-xl);
+  .project:hover {
+    padding-inline-start: calc(var(--spacing-xl) + var(--spacing-s));
   }
+
   .project::before {
     content: '';
     display: inline-block;
-    width: 15px;
-    height: 15px;
-    -moz-border-radius: 7.5px;
-    -webkit-border-radius: 7.5px;
-    border-radius: 7.5px;
+    position: absolute;
+    width: var(--circle-size);
+    height: var(--circle-size);
+    inset-inline-start: calc(-1 * var(--spacing-s));
+    -moz-border-radius: calc(var(--circle-size) / 2);
+    -webkit-border-radius: calc(var(--circle-size) / 2);
+    border-radius: calc(var(--circle-size) / 2);
     background-color: #69b6d5;
+    transition: width 0.5s ease;
   }
-}
 
-.experience::before {
-  content: '';
-  position: absolute;
-  padding: 2px;
-  height: 100%;
-  background-color: #69b6d5;
+  .project:hover::before {
+    width: calc(var(--circle-size) + var(--spacing-s));
+  }
 }
