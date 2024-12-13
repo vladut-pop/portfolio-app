@@ -3,6 +3,7 @@ import styles from './CVPage.module.css'
 import { At, GithubLogo, Hammer } from '@phosphor-icons/react'
 import Chips from '../components/Chips/Chips'
 import Section from '../components/Section/Section'
+import { Timeline } from '../components/Timeline'
 
 const CVPage: React.FC = () => {
   const { name, headline, location, picture, github, email } = data.basics
@@ -49,10 +50,10 @@ const CVPage: React.FC = () => {
         <Chips chips={data.skills} />
       </Section>
       <Section title="Experience" icon={<Hammer size={24} weight="thin" />}>
-        <Chips chips={data.skills} />
+        <Timeline experience={data.experience} />
       </Section>
       <Section title="Education" icon={<Hammer size={24} weight="thin" />}>
-        <Chips chips={data.skills} />
+        Education
       </Section>
     </div>
   )
