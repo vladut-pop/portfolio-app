@@ -1,5 +1,3 @@
-import { useEffect, useRef } from 'react'
-import * as d3 from 'd3'
 import styles from './Timeline.module.css'
 
 export type CompanyProps = {
@@ -19,7 +17,6 @@ export type TimelineProps = {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ experience }) => {
-  useEffect(() => {}, [])
   return (
     <div className={styles.experience}>
       {experience.map((company, index) => (
