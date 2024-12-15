@@ -54,7 +54,7 @@
     position: absolute;
     width: var(--circle-size);
     height: var(--circle-size);
-    inset-inline-start: calc(-1 * var(--spacing-s));
+    inset-inline-start: calc((-1 * var(--spacing-s)) + calc(var(--git-timeline-thickness) / 2));
     -moz-border-radius: calc(var(--circle-size) / 2);
     -webkit-border-radius: calc(var(--circle-size) / 2);
     border-radius: calc(var(--circle-size) / 2);
